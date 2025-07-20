@@ -12,7 +12,7 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <header className="fixed top-0 left-0 w-full z-10 bg-transparent backdrop-blur-md px-6 py-4 flex item-center justify-between">
+    <header className="fixed top-0 left-0 w-full z-10 mb-10 bg-transparent backdrop-blur-md px-6 py-4 flex item-center justify-between">
       <Link href="/" className="text-lg font-bold">
         &lt; Coding With Jars&apos;s /&gt;
       </Link>
