@@ -5,7 +5,9 @@ import Hero from "@/components/Home/hero";
 export default function Home() {
   return (
     <>
-      <Navbar />
+      <nav>
+        <Navbar />
+      </nav>
       <main>
         <Hero />
       </main>

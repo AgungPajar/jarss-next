@@ -1,9 +1,12 @@
 'use client'
 
 import { useState } from 'react'
-import Link from 'next/link';
-import { Dialog } from '@headlessui/react';
-import { Menu, X } from 'lucide-react'
+import Link from 'next/link'
+import { Dialog } from '@headlessui/react'
+import { motion, AnimatePresence } from 'framer-motion'
+import MenuIcon from '@mui/icons-material/Menu'
+import CloseIcon from '@mui/icons-material/Close'
+import { Sun, Moon, Monitor } from 'lucide-react'
 
 const navItems = ['Home', 'About Me', 'Project', 'Contact']
 const socialLinks = ['Github', 'LinkedIn', 'Instagram', 'Tiktok', 'Email']
@@ -12,55 +15,120 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <header className="fixed top-0 left-0 w-full z-10 mb-10 bg-transparent backdrop-blur-md px-6 py-4 flex item-center justify-between">
-      <Link href="/" className="text-lg font-bold">
-        &lt; Coding With Jars&apos;s /&gt;
-      </Link>
+    <>
+      {/* Navbar */}
+      <header className="fixed top-0 left-0 w-full z-40 bg-transparent backdrop-blur-md px-6 py-4 flex items-center justify-between">
+        <Link href="/" className="text-lg font-bold text-white">
+          &lt; Coding With Jars&apos;s /&gt;
+        </Link>
 
-      <button onClick={() => setMobileMenuOpen(true)} className='md:hidden text-white' >
-        <Menu className='w-6 h-6' />
-      </button>
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex gap-6">
+          {navItems.map(item => (
+            <Link
+              key={item}
+              href={`/${item.toLowerCase()}`}
+              className="text-white hover:text-primary transition"
+            >
+              {item}
+            </Link>
+          ))}
+        </nav>
+      </header>
 
-      <Dialog as="div" open={mobileMenuOpen} onClose={setMobileMenuOpen} className="md:hidden">
-        <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-3/4 max-w-sm bg-zinc-100 dark:bg-zinc-900 p-6 overflow-y-auto shadow-xl">
-          <Dialog.Title className="text-xl item-center mb-6">Navigation</Dialog.Title>
-          <div className='flex justify-between items-center mb-6'>
-            <button onClick={() => setMobileMenuOpen(false)}>
-              <X className='w-6 h-6' />
-            </button>
-          </div>
+      {/* Menu Toggle */}
+      <div className="fixed top-4 right-4 z-[999] md:hidden">
+        <motion.button
+          onClick={() => setMobileMenuOpen(prev => !prev)}
+          animate={{ rotate: mobileMenuOpen ? 90 : 0 }}
+          transition={{ duration: 0.2 }}
+          className="p-2 rounded-md bg-black/70 backdrop-blur-lg"
+        >
+          {mobileMenuOpen ? (
+            <CloseIcon className="h-6 w-6 text-white" />
+          ) : (
+            <MenuIcon className="h-6 w-6 text-white" />
+          )}
+        </motion.button>
+      </div>
 
-          <nav className='space-y-4 mb-6'>
-            {navItems.map(item => (
-              <Link 
-                key={item}
-                href={`/${item.toLocaleLowerCase()}`}
-                onClick={() => setMobileMenuOpen(false)}
-                className='block text-3xl font-medium hover:text-primary transition'
+
+      {/* Mobile Menu Dialog with AnimatePresence */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <Dialog
+            as="div"
+            open={mobileMenuOpen}
+            onClose={() => setMobileMenuOpen(false)}
+            className="relative z-50 md:hidden"
+          >
+            <div className="fixed inset-0" />
+
+            <div className="fixed inset-0 flex justify-end">
+              <Dialog.Panel
+                as={motion.div}
+                initial={{ scale: 0.8, opacity: 0, originX: 1, originY: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.8, opacity: 0 }}
+                transition={{ type: "spring", stiffness: 220, damping: 25 }}
+                className="fixed inset-y-0 right-0 w-full max-w-md bg-zinc-100 dark:bg-zinc-900 p-6 shadow-xl h-full"
               >
-                {item}
-              </Link>
-            ))}
-          </nav>
+                <div className="flex flex-col justify-between h-full">
+                  <div className="mb-6">
+                    <h2 className="text-xl font-semibold">Navigation</h2>
+                  </div>
 
-          <div className='mb-4'>
-            <h3 className='font-semibold mb-2'>Links</h3>
-            <div className='flex flex-wrap gap-3 text-sm'>
-              {socialLinks.map(link => (
-                <a key={link} href="#" className='hover:underline'>{link}</a>
-              ))}
-            </div>
-          </div>
+                  <div className="flex flex-col gap-8">
+                    <div>
+                      <h2 className="text-xl font-semibold">&lt; Coding With Jars&apos;s /&gt;</h2>
+                      <div className="border-t border-zinc-300 dark:border-zinc-700 mt-2" />
+                    </div>
 
-          <div className="mt-6">
-            <div className="grid grid-cols-3 gap-2 bg-zinc-200 dark:bg-zinc-800 rounded-lg p-2">
-              <button className="p-2 rounded-lg hover:bg-zinc-300 dark:hover:bg-zinc-700">🌞</button>
-              <button className="p-2 rounded-lg hover:bg-zinc-300 dark:hover:bg-zinc-700">🌙</button>
-              <button className="p-2 rounded-lg bg-black text-white dark:bg-white dark:text-black">🖥️</button>
+                    <nav className="space-y-4">
+                      {navItems.map(item => (
+                        <Link
+                          key={item}
+                          href={`/${item.toLowerCase()}`}
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="block text-6xl font-medium hover:text-primary transition"
+                        >
+                          {item}
+                        </Link>
+                      ))}
+                    </nav>
+
+                    <div>
+                      <h3 className="font-semibold mb-2 border-t pt-4">Links</h3>
+                      <div className="flex flex-wrap gap-3 text-sm">
+                        {socialLinks.map(link => (
+                          <a key={link} href="#" className="hover:underline">
+                            {link}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Theme Toggle */}
+                  <div className="mt-6 flex justify-center">
+                    <div className="grid grid-cols-3 gap-2 bg-zinc-200 dark:bg-zinc-800 rounded-lg p-2">
+                      <button className="p-2 rounded-lg hover:bg-zinc-300 dark:hover:bg-zinc-700">
+                        <Sun className="w-5 h-5" />
+                      </button>
+                      <button className="p-2 rounded-lg hover:bg-zinc-300 dark:hover:bg-zinc-700">
+                        <Moon className="w-5 h-5" />
+                      </button>
+                      <button className="p-2 rounded-lg bg-black text-white dark:bg-white dark:text-black">
+                        <Monitor className="w-5 h-5" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </Dialog.Panel>
             </div>
-          </div>
-        </Dialog.Panel>
-      </Dialog>
-    </header>
+          </Dialog>
+        )}
+      </AnimatePresence>
+    </>
   )
 }
