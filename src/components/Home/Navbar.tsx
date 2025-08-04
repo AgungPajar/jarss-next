@@ -63,68 +63,68 @@ export default function Navbar() {
             className="relative z-50 md:hidden"
           >
             <div className="fixed inset-0" />
-
             <div className="fixed inset-0 flex justify-end">
-              <Dialog.Panel
-                as={motion.div}
+              <motion.div
                 initial={{ scale: 0.8, opacity: 0, originX: 1, originY: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.8, opacity: 0 }}
                 transition={{ type: "spring", stiffness: 220, damping: 25 }}
                 className="fixed inset-y-0 right-0 w-full max-w-md bg-zinc-100 dark:bg-zinc-900 p-6 shadow-xl h-full"
               >
-                <div className="flex flex-col justify-between h-full">
-                  <div className="mb-6">
-                    <h2 className="text-xl font-semibold">Navigation</h2>
-                  </div>
-
-                  <div className="flex flex-col gap-8">
-                    <div>
-                      <h2 className="text-xl font-semibold">&lt; Coding With Jars&apos;s /&gt;</h2>
-                      <div className="border-t border-zinc-300 dark:border-zinc-700 mt-2" />
+                <Dialog.Panel className="h-full">
+                  <div className="flex flex-col justify-between h-full">
+                    <div className="mb-6">
+                      <h2 className="text-xl font-semibold">Navigation</h2>
                     </div>
 
-                    <nav className="space-y-4">
-                      {navItems.map(item => (
-                        <Link
-                          key={item}
-                          href={`/${item.toLowerCase()}`}
-                          onClick={() => setMobileMenuOpen(false)}
-                          className="block text-6xl font-medium hover:text-primary transition"
-                        >
-                          {item}
-                        </Link>
-                      ))}
-                    </nav>
+                    <div className="flex flex-col gap-8">
+                      <div>
+                        <h2 className="text-xl font-semibold">&lt; Coding With Jars&apos;s /&gt;</h2>
+                        <div className="border-t border-zinc-300 dark:border-zinc-700 mt-2" />
+                      </div>
 
-                    <div>
-                      <h3 className="font-semibold mb-2 border-t pt-4">Links</h3>
-                      <div className="flex flex-wrap gap-3 text-sm">
-                        {socialLinks.map(link => (
-                          <a key={link} href="#" className="hover:underline">
-                            {link}
-                          </a>
+                      <nav className="space-y-4">
+                        {navItems.map(item => (
+                          <Link
+                            key={item}
+                            href={`/${item.toLowerCase()}`}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="block text-6xl font-medium hover:text-primary transition"
+                          >
+                            {item}
+                          </Link>
                         ))}
+                      </nav>
+
+                      <div>
+                        <h3 className="font-semibold mb-2 border-t pt-4">Links</h3>
+                        <div className="flex flex-wrap gap-3 text-sm">
+                          {socialLinks.map(link => (
+                            <a key={link} href="#" className="hover:underline">
+                              {link}
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Theme Toggle */}
+                    <div className="mt-6 flex justify-center">
+                      <div className="grid grid-cols-3 gap-2 bg-zinc-200 dark:bg-zinc-800 rounded-lg p-2">
+                        <button className="p-2 rounded-lg hover:bg-zinc-300 dark:hover:bg-zinc-700">
+                          <Sun className="w-5 h-5" />
+                        </button>
+                        <button className="p-2 rounded-lg hover:bg-zinc-300 dark:hover:bg-zinc-700">
+                          <Moon className="w-5 h-5" />
+                        </button>
+                        <button className="p-2 rounded-lg bg-black text-white dark:bg-white dark:text-black">
+                          <Monitor className="w-5 h-5" />
+                        </button>
                       </div>
                     </div>
                   </div>
-
-                  {/* Theme Toggle */}
-                  <div className="mt-6 flex justify-center">
-                    <div className="grid grid-cols-3 gap-2 bg-zinc-200 dark:bg-zinc-800 rounded-lg p-2">
-                      <button className="p-2 rounded-lg hover:bg-zinc-300 dark:hover:bg-zinc-700">
-                        <Sun className="w-5 h-5" />
-                      </button>
-                      <button className="p-2 rounded-lg hover:bg-zinc-300 dark:hover:bg-zinc-700">
-                        <Moon className="w-5 h-5" />
-                      </button>
-                      <button className="p-2 rounded-lg bg-black text-white dark:bg-white dark:text-black">
-                        <Monitor className="w-5 h-5" />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </Dialog.Panel>
+                </Dialog.Panel>
+              </motion.div>
             </div>
           </Dialog>
         )}
