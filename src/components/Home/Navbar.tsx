@@ -16,42 +16,44 @@ export default function Navbar() {
 
   return (
     <>
+      {/* Desktop Nav */}
+      <nav className="hidden md:flex gap-6">
+        {navItems.map(item => (
+          <Link
+            key={item}
+            href={`/${item.toLowerCase()}`}
+            className="text-white hover:text-primary transition"
+          >
+            {item}
+          </Link>
+        ))}
+      </nav>
+
       {/* Navbar */}
-      <header className="fixed top-0 left-0 w-full z-40 bg-transparent backdrop-blur-md px-6 py-4 flex items-center justify-between">
+      <div className="md:hidden flex items-center justify-between p-4 fixed top-0 left-0 right-0 z-50">
         <Link href="/" className="text-lg font-bold text-white">
           &lt; Coding With Jars&apos;s /&gt;
         </Link>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex gap-6">
-          {navItems.map(item => (
-            <Link
-              key={item}
-              href={`/${item.toLowerCase()}`}
-              className="text-white hover:text-primary transition"
+        <div className="fixed top-4 right-4 z-[999] md:hidden">
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="transition-all"
+          >
+            <motion.div
+              initial={false}
+              animate={mobileMenuOpen ? { rotate: 180 } : { rotate: 0 }}
+              transition={{ duration: 0.3 }}
             >
-              {item}
-            </Link>
-          ))}
-        </nav>
-      </header>
-
-      {/* Menu Toggle */}
-      <div className="fixed top-4 right-4 z-[999] md:hidden">
-        <motion.button
-          onClick={() => setMobileMenuOpen(prev => !prev)}
-          animate={{ rotate: mobileMenuOpen ? 90 : 0 }}
-          transition={{ duration: 0.2 }}
-          className="p-2 rounded-md bg-black/70 backdrop-blur-lg"
-        >
-          {mobileMenuOpen ? (
-            <CloseIcon className="h-6 w-6 text-white" />
-          ) : (
-            <MenuIcon className="h-6 w-6 text-white" />
-          )}
-        </motion.button>
+              {mobileMenuOpen ? (
+                <CloseIcon className="w-6 h-6 text-white" />
+              ) : (
+                <MenuIcon className="w-6 h-6 text-white" />
+              )}
+            </motion.div>
+          </button>
+        </div>
       </div>
-
 
       {/* Mobile Menu Dialog with AnimatePresence */}
       <AnimatePresence>
@@ -60,9 +62,8 @@ export default function Navbar() {
             as="div"
             open={mobileMenuOpen}
             onClose={() => setMobileMenuOpen(false)}
-            className="relative z-50 md:hidden"
+            className="fixed inset-0 z-40 md:hidden"
           >
-            <div className="fixed inset-0" />
             <div className="fixed inset-0 flex justify-end">
               <motion.div
                 initial={{ scale: 0.8, opacity: 0, originX: 1, originY: 0 }}
@@ -73,9 +74,7 @@ export default function Navbar() {
               >
                 <Dialog.Panel className="h-full">
                   <div className="flex flex-col justify-between h-full">
-                    <div className="mb-6">
-                      <h2 className="text-xl font-semibold">Navigation</h2>
-                    </div>
+                    <div className="mb-6" />
 
                     <div className="flex flex-col gap-8">
                       <div>
