@@ -30,7 +30,7 @@ export default function Hero() {
   }, [controls])
 
   return (
-    <section id='home' className="flex flex-col items-center justify-center text-center mt-36 sm:mt-24 space-y-3 px-4">
+    <section id='about-me' className="flex flex-col items-center justify-center text-center mt-36 sm:mt-24 space-y-3 px-4">
       <AnimatedGridPattern
         numSquares={20}
         maxOpacity={0.1}

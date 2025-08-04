@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Dialog } from '@headlessui/react'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -14,19 +14,32 @@ const socialLinks = ['Github', 'LinkedIn', 'Instagram', 'Tiktok', 'Email']
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
+  useEffect(() => {
+    document.body.style.overflow = mobileMenuOpen ? 'hidden' : ''
+  }, [mobileMenuOpen])
+
+
   return (
     <>
       {/* Desktop Nav */}
-      <nav className="hidden md:flex gap-6">
-        {navItems.map(item => (
-          <Link
-            key={item}
-            href={`/${item.toLowerCase()}`}
-            className="text-white hover:text-primary transition"
-          >
-            {item}
+      <nav className="hidden md:block fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div className='max-w-7xl mx-auto px-4 py-2 flex items-center justify-between'>
+          <Link href="/" className="text-lg font-bold text-white">
+            &lt; Coding With Jars&apos;s /&gt;
           </Link>
-        ))}
+
+          <ul className='hidden md:flex space-x-14 font-bold text-sm text-black relative'>
+            {navItems.map(item => (
+              <Link
+                key={item}
+                href={`/${item.toLowerCase()}`}
+                className="text-white hover:text-primary transition"
+              >
+                {item}
+              </Link>
+            ))}
+          </ul>
+        </div>
       </nav>
 
       {/* Navbar */}
@@ -46,9 +59,9 @@ export default function Navbar() {
               transition={{ duration: 0.3 }}
             >
               {mobileMenuOpen ? (
-                <CloseIcon className="w-6 h-6 text-white" />
+                <CloseIcon className="w-8 h-8 text-white" />
               ) : (
-                <MenuIcon className="w-6 h-6 text-white" />
+                <MenuIcon className="w-8 h-8 text-white" />
               )}
             </motion.div>
           </button>
@@ -58,11 +71,12 @@ export default function Navbar() {
       {/* Mobile Menu Dialog with AnimatePresence */}
       <AnimatePresence>
         {mobileMenuOpen && (
-          <Dialog
-            as="div"
-            open={mobileMenuOpen}
-            onClose={() => setMobileMenuOpen(false)}
-            className="fixed inset-0 z-40 md:hidden"
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-40 bg-black bg-opacity-50 md:hidden"
+            onClick={() => setMobileMenuOpen(false)}
           >
             <div className="fixed inset-0 flex justify-end">
               <motion.div
@@ -72,13 +86,13 @@ export default function Navbar() {
                 transition={{ type: "spring", stiffness: 220, damping: 25 }}
                 className="fixed inset-y-0 right-0 w-full max-w-md bg-zinc-100 dark:bg-zinc-900 p-6 shadow-xl h-full"
               >
-                <Dialog.Panel className="h-full">
+                <motion.div className="h-full">
                   <div className="flex flex-col justify-between h-full">
                     <div className="mb-6" />
 
                     <div className="flex flex-col gap-8">
                       <div>
-                        <h2 className="text-xl font-semibold">&lt; Coding With Jars&apos;s /&gt;</h2>
+                        <h2 className="text-xl font-semibold">Navigation</h2>
                         <div className="border-t border-zinc-300 dark:border-zinc-700 mt-2" />
                       </div>
 
@@ -86,7 +100,7 @@ export default function Navbar() {
                         {navItems.map(item => (
                           <Link
                             key={item}
-                            href={`/${item.toLowerCase()}`}
+                            href={`#${item.toLowerCase().replace(/\s+/g, '-')}`}
                             onClick={() => setMobileMenuOpen(false)}
                             className="block text-6xl font-medium hover:text-primary transition"
                           >
@@ -122,10 +136,10 @@ export default function Navbar() {
                       </div>
                     </div>
                   </div>
-                </Dialog.Panel>
+                </motion.div>
               </motion.div>
             </div>
-          </Dialog>
+          </motion.div>
         )}
       </AnimatePresence>
     </>
