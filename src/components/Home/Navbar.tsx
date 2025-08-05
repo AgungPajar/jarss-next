@@ -32,7 +32,7 @@ export default function Navbar() {
             {navItems.map(item => (
               <Link
                 key={item}
-                href={`/${item.toLowerCase()}`}
+                href={`#${item.toLowerCase().replace(/\s+/g, '-')}`}
                 className="text-white hover:text-primary transition"
               >
                 {item}

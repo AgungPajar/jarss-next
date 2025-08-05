@@ -1,65 +1,23 @@
 'use client'
 
-import Image from 'next/image'
-import { AuroraText } from "@/components/magicui/aurora-text";
-import { AnimatedGridPattern } from "@/components/magicui/animated-grid-pattern";
-import { motion, useAnimation } from 'framer-motion'
-import { useEffect } from 'react';
-
-export default function Hero() {
-  const controls = useAnimation()
-
-  useEffect(() => {
-    const bounce = async () => {
-      while (true) {
-        const x = Math.floor(Math.random() * 100 - 50)
-        const y = Math.floor(Math.random() * 50 - 25)
-
-        await controls.start({
-          x: `${x}%`,
-          y: `${y}%`,
-          transition: {
-            duration: 3,
-            ease: 'easeInOut',
-          },
-        })
-      }
-    }
-
-    bounce()
-  }, [controls])
-
+export default function AboutMe() {
   return (
-    <section id='about-me' className="flex flex-col items-center justify-center text-center mt-36 sm:mt-24 space-y-3 px-4">
-      <AnimatedGridPattern
-        numSquares={20}
-        maxOpacity={0.1}
-        duration={3}
-        repeatDelay={1}
-        className="absolute inset-0 z-0 [mask-image:radial-gradient(ellipse_at_center,white,transparent)]"
-      />
-
-      <div className="text-6xl mt-2 sm:mt-8 sm:text-8xl font-bold text-white opacity-10 leading-none select-none space-y-7 sm:space-y-5">
-        <h1>AGUNG</h1>
-        <h1>PAJAR</h1>
-        <h1>PANGESTU</h1>
-        <h1>RUSYANTO</h1>
+    <section id='about-me' className="px-6 py-24 sm:py-32 lg:px-8 bg-[#0f0f0f] text-white">
+      <div className="mx-auto max-w-3xl text-center"> 
+        <h2 className="text-base font-semibold leading-7 text-indigo-400 tracking-widest uppercase">About Me</h2>
+        <p className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
+          Transforming ideas into real frontend magic
+        </p>
+        <p className="mt-6 text-lg leading-8 text-gray-300">
+          Hey, Im <span className="text-indigo-400 font-semibold">Agung Pajar</span> – a passionate frontend developer with a strong eye for clean UI and smooth UX. I’ve been diving deep into React, Next.js, and Tailwind CSS, turning creative concepts into fully functional, responsive, and modern websites.
+        </p>
+        <p className="mt-4 text-lg leading-8 text-gray-400">
+          Besides coding, Im also skilled in graphic design and have more than 4 years of experience creating posters, web designs, and digital content. I love learning new tech, building cool side projects, and constantly leveling up.
+        </p>
+        <p className="mt-4 text-lg leading-8 text-gray-400">
+          Im currently exploring more advanced tools like Framer Motion and headless UI libraries to bring smooth animations and accessibility into my projects. Always down for a collab or freelance project – lets build something awesome together.
+        </p>
       </div>
-
-      <motion.div animate={controls} style={{ willChange: 'transform' }} className="w-[180px] h-[240px] sm:w-[250px] sm:h-[310px] absolute z-10 rounded-xl overflow-hidden border-2 border-white shadow-xl">
-        <Image
-          src="/gw.png"
-          alt='Agung Pajar foto'
-          fill
-          objectFit='object-cover'
-          priority
-        />
-      </motion.div>
-
-      <AuroraText className="mt-12 sm:mt-10 text-5xl sm:text-8xl font-bold" colors={['#3b82f6', '#9333ea', '#f43f5e']}>
-        FRONTEND DEVELOPER
-      </AuroraText>
-
     </section>
   )
 }
