@@ -43,13 +43,13 @@ export default function AboutMe() {
       <div className="mx-auto max-w-5xl text-start">
         <h2 className="text-4xl text-center font-semibold leading-7 text-indigo-400 tracking-widest uppercase">Tentang Aku</h2>
         <p className="mt-8 text-lg leading-8 text-gray-300">
-          Hey, Im <span className="text-indigo-400 font-semibold">Agung Pajar</span> – a passionate frontend developer with a strong eye for clean UI and smooth UX. I’ve been diving deep into React, Next.js, and Tailwind CSS, turning creative concepts into fully functional, responsive, and modern websites.
+          hallo, perkenalkan aku <span className="text-indigo-400 font-semibold">Agung Pajar</span> umur 18 tahun lahir di garut pada tanggal 31 juli 2007, saat ini aku sedang menduduki kelas 12 di SMKN 1 Garut, aku tinggal di Desa Margamulya, Kec. Cikajang - Garut
         </p>
         <p className="mt-4 text-lg leading-8 text-gray-400">
-          Besides coding, Im also skilled in graphic design and have more than 4 years of experience creating posters, web designs, and digital content. I love learning new tech, building cool side projects, and constantly leveling up.
+          awal mula tertarik di dunia pemrograman di mulai dari kelas 9 smp akhir saya melihat kaka saya sedang mengerjakan tugas kuliahnya kebetulan jurusan informatika dari aku mencoba untuk mempelajari nya dimulai dari HTML tentunya
         </p>
         <p className="mt-4 text-lg leading-8 text-gray-400">
-          Im currently exploring more advanced tools like Framer Motion and headless UI libraries to bring smooth animations and accessibility into my projects. Always down for a collab or freelance project – lets build something awesome together.
+          sekarang aku sedang mendalami front-end tapi terkadang fullstack. so kalau teman teman mau membuat website boleh hubungi saya ya di instagram jarss_pajar, thanks.
         </p>
       </div>
 
