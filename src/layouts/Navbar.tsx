@@ -23,7 +23,7 @@ export default function Navbar() {
     <>
       {/* Desktop Nav */}
       <nav className="hidden md:block fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-        <div className='max-w-7xl mx-auto px-4 py-2 flex items-center justify-between'>
+        <div className='max-w-6xl mx-auto px-4 py-2 flex items-center justify-between'>
           <Link href="/" className="text-lg font-bold text-white">
             &lt; Coding With Jars&apos;s /&gt;
           </Link>
