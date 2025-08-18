@@ -13,7 +13,7 @@ import phpLogo from '../../../public/Icon/php-logo.svg'
 interface Skill {
   name: string;
   logo: StaticImageData | string;
-  ref: React.RefObject<HTMLDivElement>;
+  ref: React.RefObject<HTMLDivElement | null>;
   reverse?: boolean;
   isStraight?: boolean;
 }
