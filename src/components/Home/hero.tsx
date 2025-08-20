@@ -18,7 +18,7 @@ export default function Hero() {
 
       <div className="absolute z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-6xl">
         <div className="relative flex items-center justify-center h-[300px] sm:h-[400px]">
-          <div className="absolute text-6xl font-bold text-white select-none sm:text-8xl opacity-10 leading-none">
+          <div className="absolute text-6xl font-bold text-primary-text select-none sm:text-8xl opacity-10 leading-none">
             <h1>AGUNG</h1>
             <h1>PAJAR</h1>
             <h1>PANGESTU</h1>
@@ -37,7 +37,7 @@ export default function Hero() {
               repeatType: 'mirror',
             }}
             style={{ willChange: 'transform' }}
-            className="relative z-10 w-[180px] h-[240px] sm:w-[250px] sm:h-[310px] rounded-xl overflow-hidden border-2 border-white shadow-2xl"
+            className="relative z-10 w-[180px] h-[240px] sm:w-[250px] sm:h-[310px] rounded-xl overflow-hidden border-3 border-secondary-jars shadow-2xl"
           >
             <Image
               src="/Images/gw.png"
@@ -50,7 +50,7 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="absolute z-10 bottom-10 left-1/2 -translate-x-1/2 w-full">
+      <div className="absolute z-10 bottom-20 sm:bottom-10 left-1/2 -translate-x-1/2 w-full">
         <AuroraText 
           className="text-5xl font-bold sm:text-7xl" 
           colors={['#3b82f6', '#9333ea', '#f43f5e']}

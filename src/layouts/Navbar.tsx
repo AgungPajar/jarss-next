@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import MenuIcon from '@mui/icons-material/Menu'
 import CloseIcon from '@mui/icons-material/Close'
 import { Sun, Moon, Monitor } from 'lucide-react'
+import { ThemeToggle } from '@/components/ThemeToggle'
 
 const navItems = ['Home', 'About Me', 'Project', 'Contact']
 const socialLinks = ['Github', 'LinkedIn', 'Instagram', 'Tiktok', 'Email']
@@ -22,29 +23,34 @@ export default function Navbar() {
   return (
     <>
       {/* Desktop Nav */}
-      <nav className="hidden md:block fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+      <nav className="hidden md:block fixed top-0 left-0 right-0 z-50 bg-secondary-jars/70 backdrop-blur-sm transition-all duration-300">
         <div className='max-w-6xl mx-auto px-4 py-2 flex items-center justify-between'>
-          <Link href="/" className="text-lg font-bold text-white">
+          <Link href="/" className="text-lg font-bold text-primary-text">
             &lt; Coding With Jars&apos;s /&gt;
           </Link>
 
-          <ul className='hidden md:flex space-x-14 font-bold text-sm text-black relative'>
-            {navItems.map(item => (
-              <Link
-                key={item}
-                href={`#${item.toLowerCase().replace(/\s+/g, '-')}`}
-                className="text-white hover:text-primary transition"
-              >
-                {item}
-              </Link>
-            ))}
-          </ul>
+          <div className="flex items-center gap-x-8">
+            <ul className='hidden md:flex items-center space-x-14 font-bold text-sm'>
+              {navItems.map(item => (
+                <li key={item}>
+                  <Link
+                    href={`#${item.toLowerCase().replace(/\s+/g, '-')}`}
+                    className="text-primary-text hover:text-indigo-400 transition"
+                  >
+                    {item}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            <ThemeToggle />
+          </div>
         </div>
       </nav>
 
       {/* Navbar */}
-      <div className="md:hidden flex items-center justify-between p-4 fixed top-0 left-0 right-0 z-50">
-        <Link href="/" className="text-lg font-bold text-white">
+      <div className="md:hidden flex items-center text-primary-text border-b-2 border-primary-text bg-primary-color backdrop-blur-sm justify-between p-4 fixed top-0 left-0 right-0 z-50">
+        <Link href="/" className="text-lg font-bold">
           &lt; Coding With Jars&apos;s /&gt;
         </Link>
 
@@ -59,9 +65,9 @@ export default function Navbar() {
               transition={{ duration: 0.3 }}
             >
               {mobileMenuOpen ? (
-                <CloseIcon className="w-8 h-8 text-white" />
+                <CloseIcon className="w-8 h-8" />
               ) : (
-                <MenuIcon className="w-8 h-8 text-white" />
+                <MenuIcon className="w-8 h-8" />
               )}
             </motion.div>
           </button>
@@ -75,7 +81,7 @@ export default function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 bg-black bg-opacity-50 md:hidden"
+            className="fixed inset-0 z-40 bg-black bg-opacity-20 md:hidden"
             onClick={() => setMobileMenuOpen(false)}
           >
             <div className="fixed inset-0 flex justify-end">
@@ -123,17 +129,7 @@ export default function Navbar() {
 
                     {/* Theme Toggle */}
                     <div className="mt-6 flex justify-center">
-                      <div className="grid grid-cols-3 gap-2 bg-zinc-200 dark:bg-zinc-800 rounded-lg p-2">
-                        <button className="p-2 rounded-lg hover:bg-zinc-300 dark:hover:bg-zinc-700">
-                          <Sun className="w-5 h-5" />
-                        </button>
-                        <button className="p-2 rounded-lg hover:bg-zinc-300 dark:hover:bg-zinc-700">
-                          <Moon className="w-5 h-5" />
-                        </button>
-                        <button className="p-2 rounded-lg bg-black text-white dark:bg-white dark:text-black">
-                          <Monitor className="w-5 h-5" />
-                        </button>
-                      </div>
+                      <ThemeToggle />
                     </div>
                   </div>
                 </motion.div>

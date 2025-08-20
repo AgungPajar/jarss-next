@@ -39,7 +39,7 @@ export default function AboutMe() {
   const midpoint = Math.ceil(skills.length / 2);
 
   return (
-    <section id='about-me' className="px-4 sm:px-6 py-20 sm:py-24 lg:px-8 bg-[#0f0f0f] text-white overflow-hidden">
+    <section id='about-me' className="px-4 sm:px-6 py-20 sm:py-24 lg:px-8 bg-primary-jars/90 text-white overflow-hidden">
       <div className="mx-auto max-w-5xl text-start">
         <h2 className="text-4xl text-center font-semibold leading-7 text-indigo-400 tracking-widest uppercase">Tentang Aku</h2>
         <p className="mt-8 text-lg leading-8 text-gray-300">
@@ -49,7 +49,7 @@ export default function AboutMe() {
           awal mula tertarik di dunia pemrograman di mulai dari kelas 9 smp akhir saya melihat kaka saya sedang mengerjakan tugas kuliahnya kebetulan jurusan informatika dari aku mencoba untuk mempelajari nya dimulai dari HTML tentunya
         </p>
         <p className="mt-4 text-lg leading-8 text-gray-400">
-          sekarang aku sedang mendalami front-end tapi terkadang fullstack. so kalau teman teman mau membuat website boleh hubungi saya ya di instagram jarss_pajar, thanks.
+          sekarang aku sedang mendalami front-end tapi terkadang fullstack. so kalau teman teman mau membuat website boleh hubungi saya ya di instagram jarss_pajar yaa, thanks.
         </p>
       </div>
 
@@ -92,6 +92,6 @@ export default function AboutMe() {
         ))}
       </div>
 
-    </section>
+    </section>  
   )
 }
